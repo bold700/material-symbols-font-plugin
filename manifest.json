@@ -3,7 +3,7 @@
   "description": "Search and replace Material Symbols icons in text layers",
   "host": "http://localhost:7777",
   "code": "plugin.js",
-  "icon": "/icon.png",
+  "icon": "/icon.svg",
   "permissions": [
     "content:read",
     "content:write",

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="24" fill="#1e1e1e"/>
+  <!-- Grid of symbol placeholder squares -->
+  <rect x="14" y="14" width="28" height="28" rx="6" fill="#6750A4"/>
+  <rect x="50" y="14" width="28" height="28" rx="6" fill="#958DA5"/>
+  <rect x="86" y="14" width="28" height="28" rx="6" fill="#6750A4"/>
+  <rect x="14" y="50" width="28" height="28" rx="6" fill="#958DA5"/>
+  <rect x="50" y="50" width="28" height="28" rx="6" fill="#EADDFF"/>
+  <rect x="86" y="50" width="28" height="28" rx="6" fill="#958DA5"/>
+  <rect x="14" y="86" width="28" height="28" rx="6" fill="#6750A4"/>
+  <rect x="50" y="86" width="28" height="28" rx="6" fill="#958DA5"/>
+  <rect x="86" y="86" width="28" height="28" rx="6" fill="#6750A4"/>
+</svg>
