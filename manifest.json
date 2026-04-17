@@ -1,0 +1,12 @@
+{
+  "name": "Material Symbols",
+  "description": "Search and replace Material Symbols icons in text layers",
+  "host": "http://localhost:7777",
+  "code": "plugin.js",
+  "icon": "/icon.png",
+  "permissions": [
+    "content:read",
+    "content:write",
+    "allow:downloads"
+  ]
+}
