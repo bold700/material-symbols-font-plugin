@@ -321,17 +321,27 @@
       });
     }
 
+    function applyCurrentSettings() {
+      const textShapes = selectedShapes.filter(s => s.type === 'text');
+      if (textShapes.length === 0) return;
+      const name = selectedIcon || (textShapes[0] && textShapes[0].content) || null;
+      if (!name) return;
+      parent.postMessage({ pluginType: 'ms-font', type: 'replace-all-selected', iconName: name, fill: fillMode, size: getSize(), style: fontStyle, weight: fontWeight }, '*');
+    }
+
     weightSlider.addEventListener('input', () => {
       fontWeight = parseInt(weightSlider.value);
       weightValue.textContent = fontWeight;
       updateIconPreviews();
+      applyCurrentSettings();
     });
 
-document.querySelectorAll('.style-btn').forEach(btn => {
+    document.querySelectorAll('.style-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         fontStyle = btn.dataset.style;
         document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        applyCurrentSettings();
       });
     });
 
@@ -339,6 +349,11 @@ document.querySelectorAll('.style-btn').forEach(btn => {
       fillMode = !fillMode;
       fillToggle.classList.toggle('active', fillMode);
       updateIconPreviews();
+      applyCurrentSettings();
+    });
+
+    sizeInput.addEventListener('change', () => {
+      applyCurrentSettings();
     });
 
     // Render icons grid
@@ -350,9 +365,8 @@ document.querySelectorAll('.style-btn').forEach(btn => {
       resultsCount.textContent = `${filtered.length} icons`;
       iconsGrid.innerHTML = '';
 
-      const limit = 200;
       const fillValue = fillMode ? 1 : 0;
-      filtered.slice(0, limit).forEach(name => {
+      filtered.forEach(name => {
         const item = document.createElement('div');
         item.className = 'icon-item' + (name === selectedIcon ? ' active' : '');
         item.innerHTML = `
@@ -363,9 +377,6 @@ document.querySelectorAll('.style-btn').forEach(btn => {
         iconsGrid.appendChild(item);
       });
 
-      if (filtered.length > limit) {
-        resultsCount.textContent += ` (showing ${limit})`;
-      }
     }
 
     function selectIcon(name) {

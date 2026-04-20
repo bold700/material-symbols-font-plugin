@@ -31,6 +31,7 @@ sendSelection();
 penpot.ui.onMessage(message => {
   if (message.type === 'replace-all-selected') {
     const { iconName, fill, size, style, weight } = message;
+    const fontSize = size || 24;
     const base = `Material Symbols ${style || 'Rounded'}`;
     const fontFamily = fill ? `${base} Filled` : base;
     const selection = penpot.selection;
@@ -38,8 +39,13 @@ penpot.ui.onMessage(message => {
       if (shape.type === 'text') {
         shape.characters = iconName;
         shape.fontFamily = fontFamily;
-        if (size) shape.fontSize = String(size);
-        if (weight) shape.fontWeight = String(weight);
+        shape.fontWeight = String(weight || 400);
+        shape.fontSize = String(fontSize);
+        shape.lineHeight = '1';
+        shape.align = 'center';
+        shape.verticalAlign = 'center';
+        shape.resize(fontSize, fontSize);
+        shape.growType = 'fixed';
       }
     }
     sendSelection();
@@ -56,7 +62,11 @@ penpot.ui.onMessage(message => {
       text.fontStyle = 'normal';
       text.fontWeight = String(weight || 400);
       text.fontSize = String(fontSize);
-      text.growType = 'auto-width';
+      text.lineHeight = '1';
+      text.align = 'center';
+      text.verticalAlign = 'center';
+      text.resize(fontSize, fontSize);
+      text.growType = 'fixed';
       text.x = (penpot.viewport.center.x - fontSize / 2) || 0;
       text.y = (penpot.viewport.center.y - fontSize / 2) || 0;
       penpot.selection = [text];
